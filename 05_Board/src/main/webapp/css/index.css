@@ -62,3 +62,13 @@ a:hover {
     background-color: black;
     color:white
 }
+
+.info-wrap{
+    border: 2px solid;
+    width: 100%;
+}
+.info-row{
+    margin: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}

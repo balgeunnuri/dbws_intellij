@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>- Movie Detail</h1>
+<h1>- Movie Detail -</h1>
 
 <div style="display: flex; justify-content: center;">
     <div class="movie-detail">
@@ -14,7 +14,7 @@
             <div class="col-2">${movie.no}</div>
         </div>
         <div>
-            <div><img></div>
+            <div><img src="/images/${movie.img}"></div>
         </div>
         <div>
             <div class="col-1">Title.</div>

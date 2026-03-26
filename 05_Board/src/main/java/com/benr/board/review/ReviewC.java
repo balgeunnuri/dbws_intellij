@@ -1,5 +1,7 @@
 package com.benr.board.review;
 
+import com.benr.board.account.AccountDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ public class ReviewC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        AccountDAO.ADAO.loginCheck(request);
         request.setAttribute("content", "jsp/review/review.jsp");
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }

@@ -7,26 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AccountC", value = "/user-login")
-public class AccountC extends HttpServlet {
+@WebServlet(name = "AccountInfoC", value = "/user-info")
+public class AccountInfoC extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // 로그아웃하는일
-        AccountDAO.ADAO.logout(request);
+        // id로 조회하는 일 x - 이미 세션에 있으니까.
 
-        // 어디로
-        response.sendRedirect("hello-servlet");
+        if (AccountDAO.ADAO.loginCheck(request)) {
+            request.setAttribute("content", "jsp/account/mypage.jsp");
+        } else {
+            request.setAttribute("content", "home.jsp");
+        }
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
-//        request.setAttribute("content", "jsp/account/account.jsp");
-//        request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 로그인 하는일
-
         AccountDAO.ADAO.login(req);
 
         // 어디로

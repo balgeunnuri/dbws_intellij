@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="css/movie.css">
 </head>
 <body>
+
+<div class="login-area">
+    <span style="color: red">${msg}</span>
+    <jsp:include page="${loginPage}"></jsp:include>
+</div>
+
 <div class="container">
     <div class="title">
         <a href="hello-servlet"> Mz's place </a>

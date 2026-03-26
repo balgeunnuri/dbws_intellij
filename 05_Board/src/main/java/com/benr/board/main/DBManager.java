@@ -20,8 +20,15 @@ public class DBManager {
             rs.close();
 
         }
-        ps.close();
-        con.close();
+        if (ps != null) {
+                ps.close();
+
+            }
+        if (con != null) {
+             con.close();
+
+            }
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -1,6 +1,4 @@
-package com.benr.board.movie;
-
-import com.benr.board.account.AccountDAO;
+package com.benr.board.account;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +7,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/detail-movie")
-public class MovieDetailC extends HttpServlet {
+@WebServlet(name = "AccountEditC", value = "/user-edit")
+public class AccountEditC extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // 클릭한 그거 하나 조회하는 일
-//        MovieDAO.getMovie(request);
-        MovieDAO.MDAO.getMovie(request);
-
-        // 어디로?
+        // 수정하는 곳으로 보내기
+        // 어디로
         AccountDAO.ADAO.loginCheck(request);
-        request.setAttribute("content", "jsp/movie/movie_detail.jsp");
+        request.setAttribute("content", "jsp/account/edit.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
+
+
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (AccountDAO.ADAO.loginCheck(req)) {
+            AccountDAO.ADAO.editUser(req);
 
+        }
+        resp.sendRedirect("user-info");
 
     }
 
