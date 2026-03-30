@@ -28,7 +28,8 @@
       <div>
         <button class="review-reg-btn" onclick="location.href='review-update?pk=${param.pk}'">update</button>
 <%--        ${param.pk} == ${review.no}--%>
-        <button class="review-reg-btn">delete</button>
+<%--        <button class="review-reg-btn" onclick="location.href='review-del?no=${review.no}'">delete</button>--%>
+        <button class="review-reg-btn" onclick="deleteReview('${param.pk}')">delete</button>
         <button class="review-reg-btn" onclick="history.back()">list</button>
       </div>
     </div>
@@ -38,6 +39,12 @@
   const cntSpan = document.querySelector("#cntSpan");
     cntSpan.innerText = textarea.value.length;
 
+    function deleteReview(no) {
+      let ok = confirm("really?")
+      if (ok) {
+        location.href = 'review-del?no=' + no;
+      }
+    }
 </script>
 
 </body>

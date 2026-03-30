@@ -7,8 +7,8 @@
 <body>
 
 <form action="user-login" method="post">
-  <input type="text" placeholder="id" name="id" />
-  <input type="text" placeholder="pw" name="pw" />
+  <input type="text" placeholder="id" name="id" /> <br>
+  <input type="text" placeholder="pw" name="pw" /> <br>
   <button>login</button>
 </form>
 

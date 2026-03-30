@@ -1,38 +1,33 @@
 package com.benr.board.review;
 
 import com.benr.board.main.DBManager;
-import com.benr.board.movie.MovieDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ReviewDAO {
+public class ReviewDAO2 {
 
-    public static final ReviewDAO RDAO = new ReviewDAO();
-    public Connection con = null;
+    public static final ReviewDAO2 RDAO = new ReviewDAO2();
 
-    private ReviewDAO() {
-        try {
-            con = DBManager.connect();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    private ReviewDAO2() {
+
     }
 
     public ArrayList<ReviewVO> showAllReview(HttpServletRequest request) {
 
 
+        Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql = "select * from review_test order by r_date";
 
         try {
 
+            con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             ReviewVO reviewVO = null;
@@ -65,11 +60,13 @@ public class ReviewDAO {
     }
 
     public void addReview(HttpServletRequest req) {
+        Connection con = null;
         PreparedStatement pstmt = null;
 
         String sql = "insert into review_test values (review_test_seq.nextval, ?, ?, sysdate)";
 
         try {
+            con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
             req.setCharacterEncoding("UTF-8");
             pstmt.setString(1, req.getParameter("title"));
@@ -89,12 +86,14 @@ public class ReviewDAO {
 
     public void getReview(HttpServletRequest request) {
 
+        Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql = "select * from review_test where r_no = ?";
 
         try {
 
+            con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, request.getParameter("pk"));
             rs = pstmt.executeQuery();
@@ -124,11 +123,13 @@ public class ReviewDAO {
 
     public void updateReview(HttpServletRequest req) {
 
+        Connection con = null;
         PreparedStatement pstmt = null;
 
         String sql = "update review_test set r_title = ?, r_txt = ? where r_no = ?";
 //        r_date=sysdate 변경된 날짜 반영하고 싶을 땐
         try {
+            con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
             req.setCharacterEncoding("UTF-8");
 
@@ -149,11 +150,13 @@ public class ReviewDAO {
     }
 
     public void delReview(HttpServletRequest request) {
+        Connection con = null;
         PreparedStatement pstmt = null;
 
         String sql = "delete review_test where r_no = ?";
 
         try {
+            con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, request.getParameter("no"));
 

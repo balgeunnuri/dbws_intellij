@@ -15,8 +15,14 @@ public class ReviewC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // 전체 조회하는 일
-        ReviewDAO.RDAO.showAllReview(request);
+//        ReviewDAO.RDAO.showAllReview(request);
 
+        String page = request.getParameter("p");
+        int p = 1;
+        if (page != null) {
+            p = Integer.parseInt(page);
+        }
+        ReviewDAO.RDAO.paging(p, request);
 
         AccountDAO.ADAO.loginCheck(request);
         request.setAttribute("content", "jsp/review/review.jsp");
