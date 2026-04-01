@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(function (){
+            $("button").click(function () {
+                $.ajax({
+                   type: "get",
+                   url: "get-data",
+                   data: {name: 'asd', age:10},
+                   success: function (resData) {
+                       console.log(resData)
+                       console.log(JSON.stringify(resData))
+
+                       $.each(resData.people, function (i, p) {
+                           let content = `<h2>${p.name} / ${p.age}</h2>`
+                           $("span").append(content);
+                       })
+
+                   }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+<button>test</button>
+<span></span>
+</body>
+</html>

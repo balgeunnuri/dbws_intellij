@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script>
+      $(function () {
+
+
+    $("#b1").click(function () {
+      alert("b1 clicked.!")
+      // document.querySelector("h1").style.color = "red";
+      // document.querySelector("h1").style.backgroundColor = "yellow";
+      $("h1").css("color", "red").css("background-color", "yellow") // 위 두줄이랑 같은 코드. 더 짧게
+
+    })
+
+    $("#b2").click(function (){
+      $("h1").css("color", "purple").css("fontSize", "30px")
+    })
+
+    $("#b3").click(function () {
+      $("h1").css("color", "green"); // setter
+
+      let color = $("h1").css("color"); // getter
+      alert(color)
+    })
+
+    $("#b4").click(function () {
+      let h1Color = $("h1").css("color");
+      $("#b4").css("backgroundColor", h1Color);
+    })
+
+    let time = 5;
+    let setTime = setInterval(function () {
+      let x = $("span");
+      // alert(x)
+      // x.text(5); 되는 코드
+      x.innerText = time; // x는 제이쿼리 옵젝. 바닐라 옵젝 아니어서 안 먹음 바닐라코드
+      $(x).text(time);
+      time -= 1;
+
+      if (time < 0) {
+        clearInterval(setTime);
+      }
+
+    }, 1000);
+
+    setInterval(function () {
+        let x = Math.random() * 500;
+        let y = Math.random() * 500;
+
+        $("img").css("top", x);
+        $("img").css("left", y);
+    }, 1000)
+
+    $(".test").click(function () {
+        console.log($(".test").val());
+        if ($(".test").val() == 'night mode')
+        {
+            $('body').css("background-color", "black");
+            $('body').css("color", "white");
+            $(".test").val("day mode");
+            $(".test").text("day mode");
+        } else {
+            $('body').css("background-color", "white");
+            $('body').css("color", "black");
+            $(".test").val("night mode");
+            $(".test").text("night mode");
+        }
+
+
+    })
+      })
+  </script>
+</head>
+<body>
+<h1>ㅋㅅㅋ</h1>
+<button id="b1">btn1</button>
+<button id="b2">btn2</button>
+<button id="b3">btn3</button>
+<button id="b4">btn4</button>
+<hr>
+초 : <span></span>
+<hr>
+<img style="position: fixed; transition: all 0.2s ease" src="https://i.pinimg.com/236x/8a/0d/36/8a0d36ab6d53787c34e9fdec088b44a3.jpg" alt="">
+<hr>
+
+<input class="test" type="button" value="night mode">
+<button class="test">night mode</button>
+
+</body>
+</html>

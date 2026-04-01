@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        function test() {
+        const h1El = document.querySelector("h1");
+        alert(h1El)
+        }
+
+        // jQuery(document).ready(function ttt(){
+        //     const h1El = document.querySelector("h1");
+        //     alert(h1El)
+        // });
+
+        // 위 코드 줄인 거
+        // $(document).ready(function () {
+        //     const h1El = document.querySelector("h1");
+        //     alert(h1El)
+        //     alert(111);
+        // })
+
+        // 최종
+        $(function () {
+            // const h1El = document.querySelector("h1");
+            // alert(h1El)
+
+            const h1El = $("h1")
+            // alert(h1El.text())
+            
+            $(h1El).click(function () {
+                alert('wow')
+            })
+            $("#btn1").click(function () { // 버튼1을 클릭하면 안의 함수 수행해줘
+                alert('btn1 clicked..!')
+            })
+
+            $(".btn2").click(function () {
+                alert('oh...!!')
+            })
+
+            // 위 아래 똑같은 코드. 코드 길이 차이 심함
+            // document.querySelectorAll(".btn2").forEach(function (el) {
+            //     el.addEventListener("click", function () {
+            //         alert('oh!!!!!!!!!!!')
+            //     })
+            // })
+
+        })
+
+    </script>
+</head>
+<!--<body onload="test()">-->
+<body>
+<h1>8 _ 8</h1>
+<button id="btn1">btn1</button>
+<button class="btn2">btn2</button>
+<button class="btn2">btn3</button>
+</body>
+</html>
