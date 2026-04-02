@@ -126,7 +126,7 @@ public class HumanDAO {
             }
             System.out.println(humans);
             response.setContentType("application/json; charset=utf-8");
-            response.getWriter().println(humans);
+//            response.getWriter().println(humans); // 왜 주석처리 안 하면 페이지에 제이쿼리문 안 뜸?
 
             JsonObject obj = new JsonObject();
             JsonParser parser = new JsonParser();

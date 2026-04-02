@@ -176,7 +176,7 @@ public class ReviewDAO {
         req.setAttribute("currentPage", pageNum);
         ArrayList<ReviewVO> reviews = showAllReview(req);
         int total = reviews.size();
-        int cnt = 3;
+        int cnt = 5;
 
         // 페이지수
         int totalPage = (int) Math.ceil((double) total / cnt);

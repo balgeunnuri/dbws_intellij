@@ -9,17 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ReviewDelC", value = "/review-del")
-public class
-ReviewDelC extends HttpServlet {
+@WebServlet(name = "ReviewSearchC", value = "/review-search")
+public class ReviewSearchC extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // 전체 조회하는 일
-        ReviewDAO.RDAO.delReview(request);
 
-        // 어디로?
-        response.sendRedirect("review");
+        // 어디로? 신경 안 써도됨 비동기
+        // 필요한 데이터가 뭐? => 검색한 결과 데이터 (json으로 받자)
+        response.setContentType("application/json; charset=utf-8");
+        response.getWriter().println(ReviewDAO2.RDAO.searchReview(request));
+
+
+
     }
 
     public void destroy() {

@@ -195,4 +195,47 @@ public class ReviewDAO2 {
 
 
     }
+
+    public ArrayList<String> searchReview(HttpServletRequest request) {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "select * from review_test where r_title like '%'||?||'%'";
+
+        try {
+
+            con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, request.getParameter("reviewTitle")); // ajax 요청부분 보고 작성
+            // 밑에 요청 전에 위에 sql완성문 아니니까 채워주기
+            rs = pstmt.executeQuery();
+            ReviewVO reviewVO = null;
+            ArrayList<String> reviews = new ArrayList<>(); // String으로 제네릭 바꾸기 이유?
+
+            while (rs.next()) {
+                int no = rs.getInt("r_no");
+                String title = rs.getString("r_title");
+                String txt = rs.getString("r_txt");
+                Date r_date = rs.getDate("r_date");
+                reviewVO = new ReviewVO();
+                reviewVO.setNo(no);
+                reviewVO.setTitle(title);
+                reviewVO.setTxt(txt);
+                reviewVO.setDate(r_date);
+                reviews.add(reviewVO.toJSON()); // json문법으로 바꾸기 위함. VO가서 제이슨지슨 추가해주기
+
+            }
+            System.out.println(reviews);
+            return reviews;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(rs, pstmt, con);
+        }
+
+
+        return null;
+    }
 }

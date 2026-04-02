@@ -33,5 +33,12 @@
 
 </div>
 
+<div>
+    <input id="search-input">
+    <button id="search-btn">search</button>
+    <hr>
+    <span id="result"></span>
+</div>
+
 </body>
 </html>
