@@ -16,10 +16,14 @@ ReviewDelC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // 전체 조회하는 일
-        ReviewDAO.RDAO.delReview(request);
+//        ReviewDAO.RDAO.delReview(request);
 
         // 어디로?
-        response.sendRedirect("review");
+//        response.sendRedirect("review");
+
+//        response.setContentType("application/json; charset=utf-8"); 1,0값이 날라갈 때 제이슨 문법 중요하지 않음
+        response.getWriter().println(ReviewDAO2.RDAO.delReview(request));
+
     }
 
     public void destroy() {

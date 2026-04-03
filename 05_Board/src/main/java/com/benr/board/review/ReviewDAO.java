@@ -2,13 +2,11 @@ package com.benr.board.review;
 
 import com.benr.board.main.DBManager;
 import com.benr.board.main.DBManager_new;
-import com.benr.board.movie.MovieDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -150,7 +148,7 @@ public class ReviewDAO {
 
     }
 
-    public void delReview(HttpServletRequest request) {
+    public int delReview(HttpServletRequest request) {
         PreparedStatement pstmt = null;
 
         String sql = "delete review_test where r_no = ?";
@@ -158,10 +156,11 @@ public class ReviewDAO {
         try {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, request.getParameter("no"));
-
-            if (pstmt.executeUpdate() == 1) {
+            int row = pstmt.executeUpdate();
+            if (row == 1) {
                 System.out.println("delete review success");
             }
+            return row;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -170,6 +169,7 @@ public class ReviewDAO {
         }
 
 
+        return 0;
     }
 
     public void paging(int pageNum, HttpServletRequest req) {

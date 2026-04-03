@@ -149,7 +149,7 @@ public class ReviewDAO2 {
 
     }
 
-    public void delReview(HttpServletRequest request) {
+    public int delReview(HttpServletRequest request) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -160,16 +160,17 @@ public class ReviewDAO2 {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, request.getParameter("no"));
 
-            if (pstmt.executeUpdate() == 1) {
+            int row = pstmt.executeUpdate();
+            if (row == 1) {
                 System.out.println("delete review success");
             }
-
+    return  row;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             DBManager.close(null, pstmt, con);
         }
-
+    return 0;
 
     }
 
@@ -237,5 +238,41 @@ public class ReviewDAO2 {
 
 
         return null;
+    }
+
+
+        public ArrayList<String> showAllReview2(HttpServletRequest request) {
+
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            String sql = "select * from review_test order by r_date";
+            try {
+                conn = DBManager.connect();
+                pstmt = conn.prepareStatement(sql);
+                rs = pstmt.executeQuery();
+                ReviewVO reviewVO = null;
+                ArrayList<String> reviews = new ArrayList<>();
+                while (rs.next()) {
+                    int no = rs.getInt("r_no");
+                    String title = rs.getString("r_title");
+                    String txt = rs.getString("r_txt");
+                    Date date= rs.getDate("r_date");
+                    reviewVO = new ReviewVO();
+                    reviewVO.setNo(no);
+                    reviewVO.setTitle(title);
+                    reviewVO.setTxt(txt);
+                    reviewVO.setDate(date);
+                    reviews.add(reviewVO.toJSON());
+                }
+                return reviews;
+//            request.setAttribute("reviews", reviews);
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                DBManager.close(rs,pstmt,conn);
+            }
+            return null;
+
     }
 }
