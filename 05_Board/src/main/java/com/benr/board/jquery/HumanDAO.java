@@ -141,4 +141,39 @@ public class HumanDAO {
         }
 
     }
+
+    public static ArrayList<String> getJSON() {
+        // 호출되면 모든 human이 json형태로 바뀐 결과
+        // [{},{},...]
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "select * from human_test"; // 빼는 이유?
+
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            ArrayList<String> humans = new ArrayList<>();
+
+            while (rs.next()) {
+                Human human = new Human();
+                human.setNo(rs.getInt("h_no")); // h_no 대신 1이라고 써도 됨. 밑에도 동일 2,3..
+                human.setName(rs.getString("h_name"));
+                human.setAge(rs.getInt("h_age"));
+                humans.add(human.toJSON()); // add?
+            }
+//            System.out.println(humans.get(0).toJSON()); // 이건 json(원래 주소값을 배열로) 위에 배열<String> 으로 바꿔주면서 필요없게됨 이제 객체가 아니게 되면서?
+            System.out.println(humans); // 이건 getter setter 그 배열? json아니고?
+            return humans; // alt + enter : , 이거 한 이유? json으로 바꾸는 방법?
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(rs, pstmt, con);
+        }
+
+
+        return null;
+    }
 }

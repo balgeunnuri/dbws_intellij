@@ -11,3 +11,4 @@ insert into human_test values (human_test_seq.nextval, 'mz2', 20);
 insert into human_test values (human_test_seq.nextval, 'mz3', 30);
 
 select * from human_test;
+

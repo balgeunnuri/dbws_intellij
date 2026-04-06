@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
         $(function (){
-            $("button").click(function () {
+            $("#test-btn").click(function () {
                 $.ajax({
                    type: "get",
                    url: "get-data",
@@ -26,9 +26,15 @@
         });
 
     </script>
+    <script src="js/getjson.js" defer></script>
+<!--    스크립트 태그 항상 밑에두는 습관 가지기-->
 </head>
 <body>
-<button>test</button>
+<button id="json-btn">get json~~</button>
+<div class="result"></div>
+
+<hr>
+<button id="test-btn">test</button>
 <span></span>
 </body>
 </html>
