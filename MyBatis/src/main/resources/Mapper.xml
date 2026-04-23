@@ -7,10 +7,36 @@
         select * from coffee_test2
     </select>
 
+    <select id="searchCoffeeByPrice" resultType="com.example.mybatis.CoffeeVO">
+        select * from coffee_test2 where c_price &lt;= #{ppp}
+    </select>
+
+    <select id="searchCoffeeByName" resultType="com.example.mybatis.CoffeeVO">
+        select * from coffee_test2 where c_name like '%'||#{ppp}||'%'
+    </select>
+
+    <select id="searchCoffeeByRange" resultType="com.example.mybatis.CoffeeVO">
+<!--        select * from coffee_test2 where c_price &gt;= #{price1} and c_price &lt;= {price2}-->
+        select * from coffee_test2 where c_price between #{price1} and #{price2}
+    </select>
+
     <insert id="addCoffee">
         insert into coffee_test2
         values (coffee_test2_Seq.nextval, #{c_name}, #{c_img}, #{c_price}, #{c_exp})
 <!--        순서 중요 데이터베이스 테이블 보고 써야함. VO보고 적으면 안됨-->
 <!--        세미콜론 있어도 안됨-->
     </insert>
+
+    <delete id="delCoffee">
+        delete from coffee_test2
+        where c_no = #{pk}
+<!--        no라고 안 하고 pk로 적어도 됨 받는 값 이름은 맘대로 적어도 됨-->
+    </delete>
+
+    <update id="updateCoffeePrice">
+        update coffee_test2
+        set c_price = c_price + #{price2}
+        where  c_price &lt;= #{price1}
+    </update>
+
 </mapper>
