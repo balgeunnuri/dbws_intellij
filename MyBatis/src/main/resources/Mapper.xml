@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="benrqqq">
+    <select id="getAllCoffee" resultType="com.example.mybatis.CoffeeVO">
+        select * from coffee_test2
+    </select>
+
+    <insert id="addCoffee">
+        insert into coffee_test2
+        values (coffee_test2_Seq.nextval, #{c_name}, #{c_img}, #{c_price}, #{c_exp})
+<!--        순서 중요 데이터베이스 테이블 보고 써야함. VO보고 적으면 안됨-->
+<!--        세미콜론 있어도 안됨-->
+    </insert>
+</mapper>

@@ -1,6 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <div class="wrap">
+        <div class="item" data-title="title~" data-text="text~">
+            <div class="title">title~</div>
+            <div class="text">text~</div>
+            <div>
+                <button>edit</button>
+                <button>cancel</button>
+            </div>
+        </div>
+        <div class="item" data-title="title" data-text="text~">
+            <div class="title">title</div>
+            <div class="text">text~</div>
+            <div>
+                <button>edit</button>
+                <button>cancel</button>
+            </div>
+        </div>
+        <div class="item" data-title="title11" data-text="text11~">
+            <div class="title">title11</div>
+            <div class="text">text11~</div>
+            <div>
+                <button>edit</button>
+                <button>cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+        .wrap{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .item{
+            width: 30%;
+            height: 100%;
+            border: 1px solid #000;
+        }
+    </style>
+
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -29,6 +72,15 @@
     <script src="js/getjson.js" defer></script>
 <!--    스크립트 태그 항상 밑에두는 습관 가지기-->
 </head>
+
+<hr>
+<!--모달-->
+<div id="m">
+    <div> <input type="text" value="" id="t"> </div>
+    <div> <input type="text" value="" id="te"> </div>
+</div>
+<hr>
+
 <body>
 <button id="json-btn">get json~~</button>
 <div class="result"></div>
@@ -37,4 +89,32 @@
 <button id="test-btn">test</button>
 <span></span>
 </body>
+<script>
+    const items = document.querySelectorAll(".item");
+    console.log(items);
+    items.forEach(item => {
+        item.addEventListener("click", (e) => {
+          // alert("clicked");
+          //   const root = e.target;
+            // console.log(root.childNodes);
+            // console.log(item.dataset);
+            // console.log(item.dataset.title);
+            // console.log(item.dataset.text);
+
+            const data = item.dataset;
+            console.log(data.title);
+            console.log(data.text);
+
+            tEL.value = data.title;
+            teEL.value = data.text;
+
+        })
+    })
+
+    const tEL = document.querySelector("#t");
+    const teEL = document.querySelector("#te");
+
+
+</script>
+
 </html>
