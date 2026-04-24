@@ -20,5 +20,6 @@
 
 <hr>
 <h1> <a href="/menu">전체 메뉴 조회</a> </h1>
+<h1> <a href="/user">모든 유저 조회</a> </h1>
 </body>
 </html>
