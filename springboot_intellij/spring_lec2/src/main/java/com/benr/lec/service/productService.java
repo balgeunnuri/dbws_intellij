@@ -36,10 +36,13 @@ public class productService {
         return row;
     }
 
-    public void updateProduct(ProductVO product) {
-        if (productMapper.updateProduct(product) == 1) {
+    public String updateProduct(ProductVO product) {
+        int row = productMapper.updateProduct(product);
+        if (row == 1) {
             System.out.println("Product updated successfully");
+            return "success";
         }
+        return "fail";
     }
 
     public ProductVO getOneProduct(int pk) {

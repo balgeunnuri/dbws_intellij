@@ -14,3 +14,7 @@ insert into product_test2
 values (product_test2_seq.nextval, 'test3', 3000);
 
 select * from product_test2;
+
+create sequence review_test_seq;
+
+select * from REVIEW_TEST;

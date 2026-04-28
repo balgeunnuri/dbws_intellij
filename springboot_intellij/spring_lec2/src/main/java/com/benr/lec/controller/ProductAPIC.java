@@ -29,11 +29,16 @@ public class ProductAPIC {
     public int createProduct(@RequestBody ProductVO product) {
         return productService.createProduct(product);
     }
-    
+
 
     @DeleteMapping("/{id}")
     public int deleteProduct(@PathVariable int id) {
         return productService.deleteProduct(id);
+    }
+
+    @PutMapping
+    public String updateProduct(@RequestBody ProductVO product) {
+        return productService.updateProduct(product);
     }
 
 }

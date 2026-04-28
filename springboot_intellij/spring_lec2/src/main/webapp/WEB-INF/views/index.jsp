@@ -12,5 +12,9 @@
 <button onclick="location.href='/products'">products (controller2)</button>
 <%--비동기--%>
 <button onclick="location.href='/api/product'">products-async</button>
+<hr>
+<button onclick="location.href='/review/all'">reviews</button>
+<hr>
+<button onclick="location.href='/upload'">file page</button>
 </body>
 </html>

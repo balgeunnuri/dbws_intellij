@@ -17,5 +17,9 @@ public class HC {
         return "product/product_async";
     }
 
+    @GetMapping("/review")
+    public String review() {
+        return "review/reviews";
+    }
 
 }
