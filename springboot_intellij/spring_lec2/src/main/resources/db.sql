@@ -18,3 +18,19 @@ select * from product_test2;
 create sequence review_test_seq;
 
 select * from REVIEW_TEST;
+
+create table file_test
+(
+    f_no    number(2) primary key,
+    f_title varchar2(50 char) not null,
+    f_name  varchar2(50 char) not null
+);
+create sequence file_test_seq;
+
+insert into file_test
+values (file_test_seq.nextval, 'test', 'a.jpg');
+
+create table file_test2
+(
+    f_detail varchar2(1000 char) not null
+);

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>asdasdf</h1>
+<h1 th:text="${str1}"></h1>
+<h1 th:text="${str2}"></h1>
+
+<hr>
+<p th:utext="${a}"></p>
+<p th:text="${a}"></p>
+
+<hr>
+<span th:text="${b}"></span> <br>
+<span th:utext="${b}"></span> <br>
+<hr>
+<span>[[${b}]]</span> <br>
+<span>[(${b})]</span>
+<hr>
+
+<h1 th:text="리터럴테스트"></h1>
+<h1>리터럴테스트</h1>
+<!--두개 같은 거-->
+<h1 th:text="'리터럴 테스트'"></h1>
+<!--띄어쓰기 양옆 ''나 ||로 감싸기-->
+<h1 th:text="|리터럴 테스트|"></h1>
+
+<a href="/test">원래방식</a>
+<a th:href="@{/test}">리프문법</a>
+
+<h1><a th:href="@{/test(name=${name}, age=${age})}">parameter</a></h1>
+<h1><a th:href="@{/test/{name}/{age}(name=${name}, age=${age})}">path variable</a></h1>
+<h1><a th:href="@{/test/{name}(name=${name}, age=${age})}">두개 합친거</a></h1>
+
+</body>
+</html>
